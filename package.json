@@ -1,0 +1,23 @@
+{
+  "name": "typescriptproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc:w": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AThorc/typeScriptProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AThorc/typeScriptProject/issues"
+  },
+  "homepage": "https://github.com/AThorc/typeScriptProject#readme",
+  "devDependencies": {
+    "@types/node": "^20.8.8"
+  }
+}
