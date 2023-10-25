@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as readlineSync from 'readline-sync';
 import {find10OccurWords} from "./functions";
+import fetch from 'node-fetch';
 
 /**
  * The Abstract Factory interface declares a set of methods that return
@@ -64,10 +65,22 @@ function process(factory: AbstractFactory, fileContent:string): RegExpMatchArray
     return elements.create(fileContent);
 }
 
-function main(): void {
-    const userInput = readlineSync.question('Inserisci il path del file (locale o un URL):');
+async function main(): Promise<void> {
+    const userInput = readlineSync.question('Inserisci il path del file (locale o un URL):');    
     console.log("Path inserito:", userInput);
-    const words = fs.readFileSync(userInput, 'utf-8');
+    var words:string;
+    if(userInput.startsWith("http")){
+        const response = await fetch(userInput, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+            },
+        });
+        words = await response.text();
+    }else{
+        words = fs.readFileSync(userInput, 'utf-8');
+    }
+    console.log('words: ' + JSON.stringify(words));
     const wordList = process(new WordsFactory(), words);
     process(new LettersFactory(), words);
     process(new SpacesFactory(), words);

@@ -24,6 +24,7 @@
     "ts-jest": "^29.1.1"
   },
   "dependencies": {
+    "node-fetch": "^2.7.0",
     "readline-sync": "^1.4.10"
   }
 }
