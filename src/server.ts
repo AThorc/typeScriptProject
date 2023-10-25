@@ -1,14 +1,10 @@
 import * as fs from 'fs';
-var readline = require('readline');
+import * as readlineSync from 'readline-sync';
 
-var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  
-  rl.question("Inserisci il path del file (può essere locale o un URL): ", function(answer) {
-    console.log("Path inserito:", answer);
-    const words = fs.readFileSync(answer, 'utf-8');
+function main(): void {
+    const userInput = readlineSync.question('Inserisci il path del file (può essere locale o un URL):');
+    console.log("Path inserito:", userInput);
+    const words = fs.readFileSync(userInput, 'utf-8');
     const regexWords = /\b\w+\b/g;
     const regexLetters = /[a-zA-Z]/g;
     const regexSpaces = /\s/g;
@@ -21,10 +17,10 @@ var rl = readline.createInterface({
     console.log("Numero spazo: " + spacesList.length);
     console.log("Parole che si ripetono più di 10 volte: " + repeatedWords);
     console.log("Numero parole che si ripetono più di 10 volte: " + repeatedWords.length);
-    rl.close();
-  });
+}
 
-  function find10OccurWords(words: string[]): string[]{
+
+function find10OccurWords(words: string[]): string[]{
     const countersMap = new Map<string, number>();
     words.forEach(word => {
         if(countersMap.has(word)) {
@@ -41,4 +37,6 @@ var rl = readline.createInterface({
         }
     });
     return repeatedWords;
-  }
+}
+
+main();
