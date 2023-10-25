@@ -12,6 +12,7 @@ export function find10OccurWords(words: string[]): string[]{
     countersMap.forEach((counter, word) => {
         if(counter > 10) {
             repeatedWords.push(word);
+            //console.log(word + ' occorre: ' + counter + ' volte');
         }
     });
     return repeatedWords;

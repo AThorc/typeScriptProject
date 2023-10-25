@@ -67,7 +67,7 @@ function process(factory: AbstractFactory, fileContent:string): RegExpMatchArray
 
 async function main(): Promise<void> {
     const userInput = readlineSync.question('Inserisci il path del file (locale o un URL):');    
-    console.log("Path inserito:", userInput);
+    //console.log("Path inserito:", userInput);
     var words:string;
     if(userInput.startsWith("http")){
         const response = await fetch(userInput, {
@@ -80,7 +80,7 @@ async function main(): Promise<void> {
     }else{
         words = fs.readFileSync(userInput, 'utf-8');
     }
-    console.log('words: ' + JSON.stringify(words));
+    //console.log('words: ' + JSON.stringify(words));
     const wordList = process(new WordsFactory(), words);
     process(new LettersFactory(), words);
     process(new SpacesFactory(), words);

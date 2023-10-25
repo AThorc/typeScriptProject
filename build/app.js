@@ -108,7 +108,6 @@ function main() {
             switch (_a.label) {
                 case 0:
                     userInput = readlineSync.question('Inserisci il path del file (locale o un URL):');
-                    console.log("Path inserito:", userInput);
                     if (!userInput.startsWith("http")) return [3 /*break*/, 3];
                     return [4 /*yield*/, (0, node_fetch_1.default)(userInput, {
                             method: 'GET',
@@ -126,7 +125,6 @@ function main() {
                     words = fs.readFileSync(userInput, 'utf-8');
                     _a.label = 4;
                 case 4:
-                    console.log('words: ' + JSON.stringify(words));
                     wordList = process(new WordsFactory(), words);
                     process(new LettersFactory(), words);
                     process(new SpacesFactory(), words);

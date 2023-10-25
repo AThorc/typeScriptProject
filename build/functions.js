@@ -15,6 +15,7 @@ function find10OccurWords(words) {
     countersMap.forEach(function (counter, word) {
         if (counter > 10) {
             repeatedWords.push(word);
+            //console.log(word + ' occorre: ' + counter + ' volte');
         }
     });
     return repeatedWords;
